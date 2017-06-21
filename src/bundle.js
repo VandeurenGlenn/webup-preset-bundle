@@ -3,7 +3,6 @@ import { generateSharedDepsMergeStrategy,
        generateCountingSharedBundleUrlMapper } from 'polymer-bundler';
 
 export default ({
-  entry = '',
   dest = '',
   prefix = 'build/bundled',
   inlineJs = true,
@@ -17,7 +16,6 @@ export default ({
 
   // return an array or object as preset, each object is an build
   return [{
-    entry: entry,
     dest: join(prefix, base),
     inlineJs: inlineJs,
     inlineCss: inlineCss,
