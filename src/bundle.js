@@ -1,11 +1,11 @@
-import { join, basename, dirname } from 'path';
+import { join, basename } from 'path';
 import { generateSharedDepsMergeStrategy,
        generateCountingSharedBundleUrlMapper } from 'polymer-bundler';
 
 export default ({
   entry = '',
   dest = '',
-  fragments = [],
+  prefix = 'build/bundled',
   inlineJs = true,
   inlineCss = true,
   sharedBundlePrefix = 'shared/bundle_',
@@ -14,16 +14,11 @@ export default ({
 
   // do something with the options (in this case dest)
   const base = basename(dest);
-  const root = dirname(entry);
 
   // return an array or object as preset, each object is an build
   return [{
     entry: entry,
-    dest: `build/bundled/${base}`,
-    fragments: fragments.map(url => {
-      return join(root, url);
-    }),
-    cwd: join(process.cwd(), root),
+    dest: join(prefix, base),
     inlineJs: inlineJs,
     inlineCss: inlineCss,
     bundle: true,
